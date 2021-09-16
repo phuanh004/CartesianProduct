@@ -1,10 +1,10 @@
 <script lang="ts">
   let inputA = "1,2";
-  let inputB = "3,4";
+  let inputB = "a,b";
 
   type MathSet = Array<string | number>;
   let setA: MathSet = [1, 2];
-  let setB: MathSet = [3, 4];
+  let setB: MathSet = ["a", "b"];
   let cartesian_product_list: Array<MathSet> = [];
 
   const cartesian_product = () => {

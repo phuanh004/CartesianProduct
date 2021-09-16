@@ -2,23 +2,30 @@
   let inputA = "1,2";
 
   type MathSet = Array<string | number>;
-  let setA: MathSet = [];
+  let setA: MathSet = [1, 2];
   let power_set: Array<MathSet> = [];
 
   const empty_products = () => {
     power_set.length = 0;
   };
 
-  const generator = function* (set, map = (value: number | string) => value) {
+  const subset_generator = function* (
+    set,
+    map = (value: number | string) => value
+  ) {
     yield map([]);
 
     const magnitude = Math.pow(2, set.length);
     for (let c = 1; c < magnitude; c++) {
       yield map(
-        set.filter(
-          (value: number | string, index: number) => Math.pow(2, index) & c
-        )
+        set.filter((value: number | string, i: number) => Math.pow(2, i) & c)
       );
+    }
+  };
+
+  const generate_subset_setA = () => {
+    for (const subset of subset_generator(setA)) {
+      power_set = [...power_set, [subset]];
     }
   };
 
@@ -32,10 +39,10 @@
     setA = input_value.split(",");
 
     empty_products();
-    for (const subset of generator(setA)) {
-      power_set = [...power_set, [subset]];
-    }
+    generate_subset_setA();
   };
+
+  generate_subset_setA();
 </script>
 
 <div class="product">
