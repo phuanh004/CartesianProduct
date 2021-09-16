@@ -1,6 +1,7 @@
 <script lang="ts">
   let inputA = "1,2";
   let inputB = "a,b";
+  $: magnitude = setA.length * setB.length;
 
   type MathSet = Array<string | number>;
   let setA: MathSet = [1, 2];
@@ -87,6 +88,10 @@
       bind:value={inputB}
       on:input={onInputSet("b", inputB)}
     />{" }"}
+  </div>
+
+  <div class="magnitude">
+    | A x B | = {magnitude}
   </div>
 
   <div class="result">
